@@ -1,13 +1,30 @@
 <template>
   <q-layout class="body4">
-    <div class="card" style="width: 80rem">
-      <img :src="pokemon.sprites?.other.dream_world.front_default" alt="" class="darken-image" />
+    
+    <div class="card">
+     
+      <div class="img">
+        <img :src="pokemon.sprites?.other.dream_world.front_default" alt="Pokemon Image" class="pokemon-image" />
+        <input  v-model="info" type="text" placeholder="Adivina el pokemon" class="input" />
+        <button class="button" @click="buscar()">buscar</button>
+      </div>
+<audio >
+
+  <source src="../img_6652.mp3" type="audio/mpeg"> 
+
+  hhghhh
+</audio>
+<audio class="audio">
+  <source src="../no-creeeeo.mp3" type="audio/mpeg"> 
+  hhghhh
+</audio>
 
       <div class="card-body">
         <h5>#{{ pokemon.id }}</h5>
-        <h5 class="card-title">Ataque:{{ ataque }}</h5>
-        <h5>Defensa:{{ defensa }}</h5>
-        <button @click="traer()">traer</button>
+        <h5>#{{ pokemon.name}}</h5>
+        <h5 class="card-title">Ataque: {{ ataque }}</h5>
+        <h5>Defensa: {{ defensa }}</h5>
+         <button class="button" @click="traer()">Volver a jugar</button>
       </div>
     </div>
 
@@ -16,87 +33,146 @@
     </q-page-container>
   </q-layout>
 </template>
+
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import axios from "axios";
+
 let img = ref({});
-let pokemon = ref("");
+let pokemon = ref({});
 let ataque = ref("");
 let defensa = ref("");
+let info = ref("");
+
 async function traer() {
   try {
-    let random = Math.random();
-    random = parseInt(random * 500 + 1);
+    let random = Math.floor(Math.random() * 500) + 1; // Genera un número aleatorio entre 1 y 500
     let r = await axios.get("https://pokeapi.co/api/v2/pokemon/" + random);
     pokemon.value = r.data;
     img.value = r.data.sprites.front_default;
     ataque.value = r.data.stats[1].base_stat;
     defensa.value = r.data.stats[2].base_stat;
-    console.log(r.data);
+console.log(r);
+    const pokemonImage = document.querySelector('.pokemon-image');
+    pokemonImage.style.filter = 'brightness(0.0)';
+   
   } catch (error) {
     console.log(error);
   }
 }
-traer();
+  async function buscar() {
+ 
+     
+     if (pokemon.value.name===info.value) {
+      
+       console.log("ganador");
+      const pokemonImage = document.querySelector('.pokemon-image');
+    pokemonImage.style.filter = 'brightness(1.0)';
+Swal.fire({
+  title: '¡Ganador!',
+  text: 'Has adivinado correctamente el Pokémon',
+  imageUrl:pokemon.value.sprites?.other.showdown.front_default ,
+  imageAlt: 'Imagen del Pokémon',
+  background: '#ffab03',
+  
+});
+
+      
+      console.log(pokemon.sprites?.other.dream_world.front_default);
+    } else {
+      console.log("pailas");
+       Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "¡Pokemon equivocado!",
+      background: '#ffab03',
+      iconColor: 'red',
+      textColor:'black'
+    });
+    const audioPlayer = document.querySelector('.audio');
+    audioPlayer.play();
+    }
+ }
+onMounted(() => {
+  traer();
+  const audioPlayer = document.querySelector('audio'); 
+    audioPlayer.play();
+});
+
+traer(); // Llama a la función para obtener un Pokémon aleatorio al cargar la página
 </script>
+
 <style scoped>
 .body4 {
-  background-image: url(../hola.jpg);
+  background-image: url("../hola.jpg");
   background-repeat: no-repeat;
-  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir toda la pantalla */
-  background-position: center; /* Centra la imagen de fondo */
+  background-size: cover;
+  background-position: center;
   width: 100%;
-  height: 100vh; /* Establece la altura del layout al 100% del viewport */
+  height: 110vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.contenedor {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid black;
-  gap: 30px;
-  height: 60%;
-  width: 50%;
-  flex-direction: column;
-  background-color: rgb(255, 38, 0);
-}
-.image-container img {
-  width: 500px;
-  height: 250px;
-}
-.datos {
-  display: flex;
-  gap: 20px;
-  border: 2px solid black;
-  width: 100%;
-  height: 0%;
-}
+
 .card {
-  padding: 10px;
-  height: 60%;
+  width: 40rem;
+ 
+  padding: 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-}
-.card img {
-  width: 500px;
-  height: 350px;
+  background-image: linear-gradient(to right, #f03709, rgba(231, 231, 22, 0.842));
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   
 }
-.card-body {
+
+.img {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  position: relative;
-  top: 5%;
-  color: black;
+  flex-direction: column;
+  margin-bottom: 20px;
+  gap: 10px;
 }
-.darken-image {
-  width: 100%;
-  height: 100%;
-  filter: brightness(0.0); /* Oscurecer la imagen al 70% del brillo original */
+
+.pokemon-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  filter: brightness(0.0);
+}
+
+.input {
+  width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: red;
 }
 </style>

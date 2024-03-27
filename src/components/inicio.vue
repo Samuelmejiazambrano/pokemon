@@ -1,6 +1,8 @@
 <template>
   <q-layout class="body4">
+      <h2>Galeria Pokem<img class="opciones2" src="../descarga.png" alt=""> n</h2>
     <q-page-container class="card-container">
+      
       <q-card v-for="(poke, index) in pokemon" :key="index" class="card">
         <q-card-section>
           <div>
@@ -56,14 +58,19 @@ onMounted(async () => {
   align-items: center;
   height: auto;
   padding: 50px;
+  flex-direction: column;
 }
-
+.body4 h2{
+    position: relative;
+  top: 12vh;
+  color: rgba(255, 0, 0, 0.63);
+}
 .card-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   justify-content: center;
-  padding: 50px;
+  padding: 90px;
   gap: 50px;
 }
 
@@ -75,5 +82,10 @@ onMounted(async () => {
   position: relative;
   top: 10vh;
   background-color: rgb(98, 98, 235);
+}
+.opciones2 {
+  height: 50px;
+  width: 55px;
+  border-radius: 50%;
 }
 </style>
