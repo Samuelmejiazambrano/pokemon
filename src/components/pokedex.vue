@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="traer">
-          <button @click="traer()">Traer Pokemon </button>
+          <button class="buton" @click="traer()">Traer Pokemon </button>
         </div>
       </div>
     </div>
@@ -123,36 +123,36 @@ async function buscar() {
 </script>
 
 <style scoped>
-/* .padre {
- 
-} */
+
 .container {
 
-  height: 150vh;
+ 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 100%;
   /* display: grid;
   grid-template-rows: 60% 40%; */
 }
 .info {
+   max-width: 800px;
   width: 80%;
-  height: 95vh;
+  height: auto;
   /* display: flex;
   justify-content: center;
   align-items: center; */
+  background-image: linear-gradient(to right, #f03709, rgba(231, 231, 22, 0.842));
 
-  background-color: #ff0000;
-  padding: 20px;
+    padding: 30px; /* Reducido el padding a 30px */
   border-radius: 20px;
-  box-shadow: 3px 2px 6px 2px;
+  box-shadow: 3px 2px 6px 2px rgba(0, 0, 0, 0.3);
   /* flex-direction: column ; */
 }
 .info button {
-  padding: 20px;
+  padding: 15px 30px; /* Reducido el padding del botón */
+  font-size: 18px; /* Aumentado el tamaño de la letra del botón */
 }
-
 /* .estadistica {
   
 } */
@@ -161,7 +161,7 @@ async function buscar() {
   flex-direction: column;
   justify-content: flex-start;
   gap: 5px;
-
+font-weight: bold; 
 }
 .especificacion b {
   color: black;
@@ -174,13 +174,16 @@ async function buscar() {
   justify-content: center;
   align-items: center;
   border: 4px solid;
-  background-color: #ff4500;
+  background-color: #2b2a2a64;
   border-radius: 10px;
+  padding: 30px; 
+  gap: 60px;
 }
 .traer {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 .traer button {
   width: 30vh;
@@ -192,7 +195,7 @@ async function buscar() {
   font-size: 20px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   background-color: #ff4500;
-  border: 1px solid;
+  border: 1px solid #4e4e4e;
 }
 .header {
   background-color: #ff4500;
@@ -248,11 +251,14 @@ text-align: center;
   border-radius: 10px;
 }
 .padre{
-  background-image: url(../hola.jpg);
+  background-image: url(../descarga2.png);
   background-repeat: no-repeat;
   background-size: cover; /* Ajusta el tamaño de la imagen para cubrir toda la pantalla */
   background-position: center; /* Centra la imagen de fondo */
   width: 100%;
-  height: 160vh; /* Establece la altura del layout al 100% del viewport */
+  height: 150vh; /* Establece la altura del layout al 100% del viewport */
+}
+.buton:hover {
+  background-color: red;
 }
 </style>

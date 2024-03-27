@@ -1,6 +1,6 @@
 <template>
   <q-layout class="body4">
-    
+   
     <div class="card">
      
       <div class="img">
@@ -20,12 +20,14 @@
 </audio>
 
       <div class="card-body">
+        
         <h5>#{{ pokemon.id }}</h5>
         <h5>#{{ pokemon.name}}</h5>
         <h5 class="card-title">Ataque: {{ ataque }}</h5>
         <h5>Defensa: {{ defensa }}</h5>
-         <button class="button" @click="traer()">Volver a jugar</button>
+      
       </div>
+         <button class="button2" @click="traer()">Volver a jugar</button>
     </div>
 
     <q-page-container>
@@ -43,7 +45,7 @@ let pokemon = ref({});
 let ataque = ref("");
 let defensa = ref("");
 let info = ref("");
-
+let adivinado = ref(true);
 async function traer() {
   try {
     let random = Math.floor(Math.random() * 500) + 1; // Genera un número aleatorio entre 1 y 500
@@ -62,7 +64,7 @@ console.log(r);
 }
   async function buscar() {
  
-     
+   
      if (pokemon.value.name===info.value) {
       
        console.log("ganador");
@@ -74,6 +76,8 @@ Swal.fire({
   imageUrl:pokemon.value.sprites?.other.showdown.front_default ,
   imageAlt: 'Imagen del Pokémon',
   background: '#ffab03',
+  
+  
   
 });
 
@@ -104,27 +108,29 @@ traer(); // Llama a la función para obtener un Pokémon aleatorio al cargar la 
 
 <style scoped>
 .body4 {
-  background-image: url("../hola.jpg");
+  background-image: linear-gradient(to right, #ea1b1bc3, rgba(22, 231, 214, 0.842));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 110vh;
+  height: 140vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
+
 .card {
-  width: 40rem;
- 
+  width: 60rem;
+ height: 40rem;
   padding: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-image: linear-gradient(to right, #f03709, rgba(231, 231, 22, 0.842));
+   background-image: url(../quien_es_ese_pokemon.jpg);
   border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
   
 }
 
@@ -133,7 +139,8 @@ traer(); // Llama a la función para obtener un Pokémon aleatorio al cargar la 
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-top: 100px;
+  margin-left: 120px;
   gap: 10px;
 }
 
@@ -149,7 +156,7 @@ traer(); // Llama a la función para obtener un Pokémon aleatorio al cargar la 
   width: 200px;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 2px solid black;
   border-radius: 5px;
   text-align: center;
 }
@@ -157,8 +164,21 @@ traer(); // Llama a la función para obtener un Pokémon aleatorio al cargar la 
 .card-body {
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
+  margin-right: 200px;
   align-items: center;
   gap: 10px;
+  color: rgb(17, 16, 16);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.card-body>*{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  height: 5vh;
+  border-radius: 20%;
+  padding: 5px;
 }
 
 .button {
@@ -170,9 +190,28 @@ traer(); // Llama a la función para obtener un Pokémon aleatorio al cargar la 
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  
 }
+.button2 {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 550px;
+}
+
 
 .button:hover {
   background-color: red;
+}
+iframe {
+  width: 100px; /* Ancho del iframe */
+  height: 100px; /* Altura del iframe */
+  margin-left: 20px; /* Ajuste de margen para separar el iframe del título */
+  border-radius: 80%;
 }
 </style>

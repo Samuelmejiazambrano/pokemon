@@ -1,11 +1,14 @@
 <template>
   <q-layout class="body4">
+    
       <h2>Galeria Pokem<img class="opciones2" src="../descarga.png" alt=""> n</h2>
+      
     <q-page-container class="card-container">
       
       <q-card v-for="(poke, index) in pokemon" :key="index" class="card">
         <q-card-section>
           <div>
+            
             <p>{{ poke.name }}</p>
             <p>#{{poke.id}}</p>
             <img :src="poke.sprites?.other.showdown.front_default" alt="" class="pokemon-image" />
@@ -82,10 +85,16 @@ onMounted(async () => {
   position: relative;
   top: 10vh;
   background-color: rgb(98, 98, 235);
+  box-shadow: 1px 2px 2px;
 }
 .opciones2 {
   height: 50px;
   width: 55px;
   border-radius: 50%;
 }
+iframe {
+    width: 80px; /* Ancho del iframe */
+    height: 100px; /* Altura del iframe */
+    margin-left: 20px; /* Ajuste de margen para separar el iframe del título */
+  }
 </style>
