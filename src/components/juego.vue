@@ -16,7 +16,7 @@
         <button class="button" @click="buscar()">buscar</button>
         <div class="card-body">
           <h5>#{{ pokemon.id }}</h5>
-          <h5>#{{ pokemon.name }}</h5>
+        
           <h5 class="card-title">Ataque: {{ ataque }}</h5>
           <h5>Defensa: {{ defensa }}</h5>
         </div>
@@ -70,12 +70,27 @@ async function buscar() {
     console.log("ganador");
     const pokemonImage = document.querySelector(".pokemon-image");
     pokemonImage.style.filter = "brightness(1.0)";
-    Swal.fire({
-      title: "¡Ganador!",
-      text: "Has adivinado correctamente el Pokémon",
-      imageUrl: pokemon.value.sprites?.other.showdown.front_default,
-      imageAlt: "Imagen del Pokémon",
-      background: "#ffab03",
+Swal.fire({
+      title: pokemon.value.name,
+      text:"Has adivinado correctamente el Pokémon",
+      html: `
+          <img
+          src="${pokemon.value.sprites?.other.showdown.front_default}"
+          alt="Pokemon Image"
+          class="pokemon-image"
+        />
+          <p>Defensa: ${defensa.value}</p>
+          <p>Altura: ${pokemon.value.height}</p>
+          <p>Ataque: ${ataque.value}</p>
+          <p>Velocidad: ${pokemon.value.stats[5].base_stat}</p>
+          
+        
+      `,
+      background: 'linear-gradient(to bottom, royalblue 20%, yellow  100%)',
+      width: '30%',
+      // background: "royalblue",
+     width:" 30%"
+      
     });
 
     console.log(pokemon.sprites?.other.dream_world.front_default);
@@ -151,7 +166,7 @@ traer(); // Llama a la función para obtener un Pokémon aleatorio al cargar la 
   height: 200px;
 
   margin-bottom: 20px;
-  margin-right: 70px;
+  
   position: relative;
   filter: brightness(0);
 }
@@ -163,7 +178,7 @@ traer(); // Llama a la función para obtener un Pokémon aleatorio al cargar la 
   border: 2px solid black;
   border-radius: 5px;
   text-align: center;
-   margin-right: 70px;
+   
 }
 
 .card-body {
@@ -196,7 +211,7 @@ traer(); // Llama a la función para obtener un Pokémon aleatorio al cargar la 
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-   margin-right: 70px;
+   
    width: 40%;
 }
 .button2 {
@@ -209,7 +224,7 @@ traer(); // Llama a la función para obtener un Pokémon aleatorio al cargar la 
   cursor: pointer;
   transition: background-color 0.3s;
   margin-bottom: 550px;
-  margin-left: 250px;
+  margin-left: 350px;
 }
 .button2:hover {
   background-color: #d8dce18a;
