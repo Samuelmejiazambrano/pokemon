@@ -1,9 +1,5 @@
-
-
 <template>
   <q-layout view="hHh lpR fFf" class="padre">
-  
-
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -61,7 +57,7 @@
           </div>
         </div>
         <div class="traer">
-          <button class="buton" @click="traer()">Traer Pokemon </button>
+          <button class="buton" @click="traer()">Traer Pokemon</button>
         </div>
       </div>
     </div>
@@ -103,13 +99,11 @@ async function traer() {
     especialdefensa2.value = especialdefensa.value / 100;
     velocidad.value = r.data.stats[5].base_stat;
     velocidad2.value = velocidad.value / 100;
-
   } catch (error) {
     console.log(error);
   }
-
 }
-traer()
+traer();
 async function buscar() {
   try {
     let r = await axios.get("https://pokeapi.co/api/v2/pokemon/" + poke.value);
@@ -117,34 +111,39 @@ async function buscar() {
   } catch (error) {
     console.log(error);
   }
-      
 }
-
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+   
 
 .container {
-
- 
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100%;
+
   /* display: grid;
   grid-template-rows: 60% 40%; */
 }
 .info {
-   max-width: 800px;
+  max-width: 800px;
+  max-height: 1000px;
   width: 80%;
   height: auto;
   /* display: flex;
   justify-content: center;
   align-items: center; */
-  background-image: linear-gradient(to right, #f03709, rgba(231, 231, 22, 0.842));
+  background-image: linear-gradient(
+    to right,
+    #f03709bf,
+    rgba(241, 241, 60, 0.722)
+  );
 
-    padding: 30px; /* Reducido el padding a 30px */
+  padding: 30px; /* Reducido el padding a 30px */
   border-radius: 20px;
   box-shadow: 3px 2px 6px 2px rgba(0, 0, 0, 0.3);
   /* flex-direction: column ; */
@@ -153,15 +152,16 @@ async function buscar() {
   padding: 15px 30px; /* Reducido el padding del botón */
   font-size: 18px; /* Aumentado el tamaño de la letra del botón */
 }
-/* .estadistica {
-  
-} */
+.estadistica {
+   font-family: 'Luckiest Guy',inherit;
+}
 .especificacion {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 5px;
-font-weight: bold; 
+  font-weight: bold;
+    font-family: 'Luckiest Guy', cursive;
 }
 .especificacion b {
   color: black;
@@ -176,14 +176,14 @@ font-weight: bold;
   border: 4px solid;
   background-color: #2b2a2a64;
   border-radius: 10px;
-  padding: 30px; 
+  padding: 30px;
   gap: 60px;
+  
 }
 .traer {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 .traer button {
   width: 30vh;
@@ -193,9 +193,9 @@ font-weight: bold;
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  background-color: #ff4500;
-  border: 1px solid #4e4e4e;
+    font-family: 'Luckiest Guy', cursive;
+  background-color: #ff44008f;
+  border: 1px solid #4e4e4e98;
 }
 .header {
   background-color: #ff4500;
@@ -231,34 +231,52 @@ font-weight: bold;
 }
 .header-input label {
   margin-right: 10px;
-  
 }
-.icono{
+.icono {
   position: absolute;
-  left:  20px;
+  left: 20px;
 }
 .header-input input::placeholder {
   font-size: 15px;
-text-align: center;
-text-align: center;
+  text-align: center;
+  text-align: center;
 }
 .header-input input {
- width: 40vh;
- border-radius: 10px;
+  width: 40vh;
+  border-radius: 10px;
 }
-.header-input  button{
+.header-input button {
   width: 15vh;
   border-radius: 10px;
 }
-.padre{
-  background-image: url(../descarga2.png);
-  background-repeat: no-repeat;
-  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir toda la pantalla */
-  background-position: center; /* Centra la imagen de fondo */
+.padre {
+  background-image: linear-gradient(
+    to right,
+    #f03709c3,
+    rgba(231, 231, 22, 0.6)
+  );
   width: 100%;
-  height: 150vh; /* Establece la altura del layout al 100% del viewport */
+  height: auto; /* Establece la altura del layout al 100% del viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .buton:hover {
   background-color: red;
+}
+@media (max-height: 900px) {
+  .padre {
+    width: 100%;
+    height: 150vh; /* Establece la altura del layout al 100% del viewport */
+  }
+
+  .image-container img {
+    width: 100%; /* Ajustar el ancho */
+    height: 80%; /* Altura automática */
+  }
+}
+.traer button {
+  width: 40vh;
+
 }
 </style>

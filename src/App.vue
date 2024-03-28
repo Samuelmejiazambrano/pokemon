@@ -34,7 +34,7 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color: rgb(226, 30, 30);
+   background-image: linear-gradient(to right, #ea1b1b, #94b4b4c7, rgba(14, 230, 212, 0.781));
 }
 .link {
   display: flex;
@@ -61,8 +61,8 @@
   border-radius: 50%;
 }
 .opciones2:hover {
-  border: 1px solid black;
-  background-color: rgb(172, 154, 154);
+  
+  background-color: rgba(224, 216, 216, 0.645);
   
 }
 .logo {
