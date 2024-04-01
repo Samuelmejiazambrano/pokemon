@@ -1,6 +1,7 @@
 <template>
   <q-layout class="body4">
     <div class="card">
+      
       <div class="img">
         <img
           :src="pokemon.sprites?.other.dream_world.front_default"

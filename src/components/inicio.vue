@@ -6,7 +6,7 @@
           Galeria Pokem<img class="opciones2" src="../descarga.png" alt="" />n
         </h2>
       </div>
-      <div class="buton">
+      <!-- <div class="buton">
             <button class="btn btn-primary mt-3" @click="getPokemons(offset - 20)">
           Atras
         </button>
@@ -14,7 +14,34 @@
           Siguiente
         </button>
     
-      </div>
+      </div> -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+
+    <!-- Botón "Previous" -->
+    <li class="page-item" :class="{ 'disabled': offset === 0 }">
+      <button class="page-link" @click="getPokemons(offset - 20)" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </button>
+    </li>
+
+    <!-- Números de página -->
+    <li class="page-item" v-for="pageNumber in totalPages" :key="pageNumber" :class="{ 'active': currentPage === pageNumber }">
+      <button class="page-link" @click="changePage(pageNumber)">{{ pageNumber }}</button>
+    </li>
+
+    <!-- Botón "Next" -->
+    <li class="page-item" :class="{ 'disabled': offset + 20 >= totalPokemons }">
+      <button class="page-link" @click="getPokemons(offset + 20)" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </button>
+    </li>
+
+  </ul>
+</nav>
+
     </div>
     <div class="body3">
       <div
@@ -253,4 +280,53 @@ iframe {
 .titulo{
   height: 40vh;
 }
+.pagination {
+  margin-top: 20px;
+}
+
+.page-link {
+  color: #007bff;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+
+.page-link:hover {
+  z-index: 2;
+  color: #0056b3;
+  text-decoration: none;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.page-link:focus {
+  z-index: 3;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+
+.page-item:first-child .page-link {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.page-item:last-child .page-link {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
 </style>

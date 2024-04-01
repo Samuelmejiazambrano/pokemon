@@ -4,8 +4,12 @@
       <router-view />
     </q-page-container>
     <div class="container">
+      
+  
       <div class="info">
+        
         <div class="descripcion">
+              <!-- <button class="button-like" @click="likePokemon()">Me gusta</button> -->
           <div class="image-container">
             <img
               :src="pokemon.sprites?.other.dream_world.front_default"
@@ -58,6 +62,7 @@
         </div>
         <div class="traer">
           <button class="buton" @click="traer()">Traer Pokemon</button>
+          
         </div>
       </div>
     </div>
@@ -112,12 +117,17 @@ async function buscar() {
     console.log(error);
   }
 }
+let likedPokemons = ref([]);
+
+const likePokemon = () => {
+  likedPokemons.value.push(pokemon.value);
+
+  console.log(likedPokemons.value);
+};
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
-
-   
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
 
 .container {
   padding: 20px;
@@ -153,7 +163,7 @@ async function buscar() {
   font-size: 18px; /* Aumentado el tamaño de la letra del botón */
 }
 .estadistica {
-   font-family: 'Luckiest Guy',inherit;
+  font-family: "Luckiest Guy", inherit;
 }
 .especificacion {
   display: flex;
@@ -161,7 +171,7 @@ async function buscar() {
   justify-content: flex-start;
   gap: 5px;
   font-weight: bold;
-    font-family: 'Luckiest Guy', cursive;
+  font-family: "Luckiest Guy", cursive;
 }
 .especificacion b {
   color: black;
@@ -178,7 +188,6 @@ async function buscar() {
   border-radius: 10px;
   padding: 30px;
   gap: 60px;
-  
 }
 .traer {
   display: flex;
@@ -193,7 +202,7 @@ async function buscar() {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-    font-family: 'Luckiest Guy', cursive;
+  font-family: "Luckiest Guy", cursive;
   background-color: #ff44008f;
   border: 1px solid #4e4e4e98;
 }
@@ -277,6 +286,5 @@ async function buscar() {
 }
 .traer button {
   width: 40vh;
-
 }
 </style>
